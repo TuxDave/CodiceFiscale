@@ -88,4 +88,26 @@ public class CodiceFiscale{
             throw new IllegalArgumentException("Nome della città o sigla non corrette!");
         }
     }
+
+    //Metodi Calcolatori del CF
+    public String codeCognome(){
+        int i = 0;
+        String vocali = "", consonanti = "", v="AEIOU";
+        for(char lettera : this.getCognome().toCharArray()){
+            if(v.contains(Character.toString(lettera))){
+                vocali += lettera;
+            }else if(!v.contains(Character.toString(lettera)) && lettera != ' ' && lettera != '\''){
+                consonanti += lettera;
+            }
+        }
+        v = consonanti + vocali;
+        this.cognome = "";
+        if(v.length() >= 3){
+            this.setCognome(v.substring(0, 3));
+        }else{
+            this.setCognome(v);
+            this.cognome += "X".repeat(3 - v.length());
+        }
+        return new String();
+    }
 }
