@@ -22,6 +22,9 @@ public class CodiceFiscale{
         this.setSesso(sesso);
         this.setComune(comune, sigla);
     }
+    public CodiceFiscale() throws IOException, FileNotFoundException{
+        this("","","01/01/1999",'f',"roma", "ro");
+    }
 
     //Getter-Setter
     public String getCognome(){
@@ -91,7 +94,6 @@ public class CodiceFiscale{
 
     //Metodi Calcolatori del CF
     public String codeCognome(){
-        int i = 0;
         String vocali = "", consonanti = "", v="AEIOU";
         for(char lettera : this.getCognome().toCharArray()){
             if(v.contains(Character.toString(lettera))){
@@ -101,13 +103,32 @@ public class CodiceFiscale{
             }
         }
         v = consonanti + vocali;
-        this.cognome = "";
+        String c = "";
         if(v.length() >= 3){
-            this.setCognome(v.substring(0, 3));
+            c = v.substring(0, 3);
         }else{
-            this.setCognome(v);
-            this.cognome += "X".repeat(3 - v.length());
+            c = v;
+            c += "X".repeat(3 - v.length());
         }
-        return new String();
+        return c;
+    }
+    public String codeNome(){
+        String vocali = "", consonanti = "", v="AEIOU";
+        for(char lettera : this.getNome().toCharArray()){
+            if(v.contains(Character.toString(lettera))){
+                vocali += lettera;
+            }else if(!v.contains(Character.toString(lettera)) && lettera != ' ' && lettera != '\''){
+                consonanti += lettera;
+            }
+        }
+        String n = "";
+        vocali += "XXX";
+        if(consonanti.length() >= 4){
+            n += new String(consonanti.toCharArray()[0] + consonanti.substring(2, 4));
+        }else{
+            n = consonanti;
+            n += vocali.substring(0, (3 - consonanti.length()));
+        }
+        return n;
     }
 }
