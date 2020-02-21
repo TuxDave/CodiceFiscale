@@ -131,4 +131,7 @@ public class CodiceFiscale{
         }
         return n;
     }
+    public String codeYear(){
+        return new String(this.getData().substring(8,10));
+    }
 }
