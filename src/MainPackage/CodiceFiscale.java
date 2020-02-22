@@ -134,4 +134,21 @@ public class CodiceFiscale{
     public String codeYear(){
         return new String(this.getData().substring(8,10));
     }
+    public String codeMese(){
+        int m = Integer.parseInt(this.getData().substring(3,5));
+        String[] corr = new String[12];
+        corr[0] = "A";
+        corr[1] = "B";
+        corr[2] = "C";
+        corr[3] = "D";
+        corr[4] = "E";
+        corr[5] = "H";
+        corr[6] = "L";
+        corr[7] = "M";
+        corr[8] = "P";
+        corr[9] = "R";
+        corr[10] = "S";
+        corr[11] = "T";
+        return corr[m - 1];
+    }
 }
