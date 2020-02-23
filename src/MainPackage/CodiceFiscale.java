@@ -151,4 +151,13 @@ public class CodiceFiscale{
         corr[11] = "T";
         return corr[m - 1];
     }
+    public String codeDay(){
+        String d = this.getData().substring(0,2);
+        if(this.getSesso() == 'F'){
+            int ret = Integer.parseInt(d);
+            ret += 40;
+            d = Integer.toString(ret);
+        }
+        return d;
+    }
 }
