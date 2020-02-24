@@ -24,7 +24,7 @@ public class CodiceFiscale{
         this.setComune(comune, sigla);
     }
     public CodiceFiscale() throws IOException, FileNotFoundException{
-        this("","","01/01/1999",'f',"roma", "ro");
+        this("","","01/01/1999",'f',"roma", "rm");
     }
 
     //Getter-Setter
