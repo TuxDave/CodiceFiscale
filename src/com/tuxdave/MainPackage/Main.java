@@ -1,6 +1,6 @@
-package MainPackage;
+package com.tuxdave.MainPackage;
 
-import CodiceFiscale.CodiceFiscale;
+import com.tuxdave.CodiceFiscale.CodiceFiscale;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class Main{
         try{
             cf = new CodiceFiscale();
         }catch(FileNotFoundException e){
-            System.out.println("File catasto.csv non trovato! Posizionarlo nel percorso \"./db/catasto.csv\" rispetto al MainPackage");
+            System.out.println("File catasto.csv non trovato! Posizionarlo nel percorso \"./db/catasto.csv\" rispetto al com.tuxdave.MainPackage");
             System.out.println("Arrivederci");
             System.exit(0);
         }

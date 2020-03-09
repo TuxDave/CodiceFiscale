@@ -17,14 +17,14 @@ Se non si possiede un compilatore (jdk) è presente una release precompilata pro
 Per avviare:
 In caso si abbia scaricato la versione precompilata in formato `jar` sarà sufficiente:
 
-    java -jar CodiceFiscale.jar
+    java -jar com.tuxdave.CodiceFiscale.jar
 In caso si abbia compilato in prima persona basterà:
 
-    java MainPackage.Main
+    java com.tuxdave.MainPackage.Main
 
 ***BUILD***
-In caso si voglia procedere alla compilazione è sufficiente compilare il CodiceFiscale con il comando:
+In caso si voglia procedere alla compilazione è sufficiente compilare il com.tuxdave.CodiceFiscale con il comando:
 
-     javac CodiceFiscale/*
+     javac com.tuxdave.CodiceFiscale/*
 in automatico verrà compilato per la vostra versione del jre.
 
