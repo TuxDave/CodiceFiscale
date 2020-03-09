@@ -8,3 +8,4 @@ build/*
 CodiceFiscaleJava.iml
 .project
 .classpath
+./out
