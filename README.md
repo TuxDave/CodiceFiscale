@@ -23,8 +23,8 @@ In caso si abbia compilato in prima persona basterà:
     java MainPackage.Main
 
 ***BUILD***
-In caso si voglia procedere alla compilazione è sufficiente compilare il MainPackage con il comando:
+In caso si voglia procedere alla compilazione è sufficiente compilare il CodiceFiscale con il comando:
 
-     javac MainPackage/*
+     javac CodiceFiscale/*
 in automatico verrà compilato per la vostra versione del jre.
 

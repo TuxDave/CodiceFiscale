@@ -4,3 +4,7 @@
 .vscode/*
 build
 build/*
+/bin/
+CodiceFiscaleJava.iml
+.project
+.classpath

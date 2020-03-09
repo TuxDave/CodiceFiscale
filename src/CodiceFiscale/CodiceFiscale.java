@@ -1,4 +1,4 @@
-package MainPackage;
+package CodiceFiscale;
 
 import java.util.regex.Pattern;
 import java.io.BufferedReader;
