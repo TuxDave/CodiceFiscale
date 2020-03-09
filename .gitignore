@@ -9,3 +9,5 @@ CodiceFiscaleJava.iml
 .project
 .classpath
 ./out
+./out/*
+/out/
