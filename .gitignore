@@ -1,13 +1,4 @@
 .idea/
-.idea/*
-.vscode/
-.vscode/*
 build
-build/*
-/bin/
+out
 CodiceFiscaleJava.iml
-.project
-.classpath
-./out
-./out/*
-/out/
