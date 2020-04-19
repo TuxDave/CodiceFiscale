@@ -1,11 +1,9 @@
 package com.tuxdave.CodiceFiscale;
 
-import java.util.regex.Pattern;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 import java.util.TreeMap;
+import java.util.regex.Pattern;
 
 public class CodiceFiscale{
     private String cognome;
@@ -71,8 +69,11 @@ public class CodiceFiscale{
         if(!Pattern.matches("[A-Z][A-Z]", b)){
             throw new IllegalArgumentException("Sigla città non valida, usare formato [XX] es. TO");
         }
-        FileReader file = new FileReader("./db/catasto.csv");
-        BufferedReader lettore = new BufferedReader(file);
+
+        //FileReader file = new FileReader("db/catasto.csv");//todo:capire come raggiungere le risorse sia qui che nel jar
+        URL file = getClass().getClassLoader().getResource("catasto.csv");
+        assert file != null;
+        BufferedReader lettore = new BufferedReader(new InputStreamReader(file.openStream()));
         String[] riga = new String[3];
         riga[0] = lettore.readLine();
         boolean found = false;
@@ -87,7 +88,7 @@ public class CodiceFiscale{
             }
             riga[0] = lettore.readLine();
         }while(riga[0] != null);
-        file.close();
+        lettore.close();
         if(!found){
             throw new IllegalArgumentException("Nome della città o sigla non corrette!");
         }
@@ -109,7 +110,10 @@ public class CodiceFiscale{
             c = v.substring(0, 3);
         }else{
             c = v;
-            c += "X".repeat(3 - v.length());
+            //c += "X".repeat(3 - v.length());
+            for(int i = 0; i < 3 - v.length(); i++){
+                c += "X";
+            }
         }
         return c;
     }

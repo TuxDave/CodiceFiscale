@@ -1,4 +1,5 @@
-.idea/
+.idea
+src/test
+target
 build
-out
-CodiceFiscaleJava.iml
+CodiceFiscale.iml
