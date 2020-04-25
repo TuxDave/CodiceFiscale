@@ -1,4 +1,4 @@
-package com.tuxdave.MainPackage;
+package com.tuxdave.GUI;
 
 import com.tuxdave.CodiceFiscale.CodiceFiscale;
 
@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] argv)throws IOException {
+        Gui a = new Gui();
+        a.setVisible(true);
+        a.pack();
         Scanner lettore = new Scanner(System.in);
         System.out.println("Benvenuto nel calcolatore di Codice Fiscale Italiano!\n ---La Versione Grafica sarà disponibile a breve!---");
         System.out.println("Provvedi inserendo i dati quando richiesti\n");
@@ -15,7 +18,7 @@ public class Main{
         try{
             cf = new CodiceFiscale();
         }catch(FileNotFoundException e){
-            System.out.println("File catasto.csv non trovato! Posizionarlo nel percorso \"./db/catasto.csv\" rispetto al com.tuxdave.MainPackage");
+            System.out.println("File catasto.csv non trovato! Posizionarlo nel percorso \"./db/catasto.csv\" rispetto al com.tuxdave.GUI");
             System.out.println("Arrivederci");
             System.exit(0);
         }

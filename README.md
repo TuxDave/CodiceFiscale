@@ -20,7 +20,7 @@ In caso si abbia scaricato la versione precompilata in formato `jar` sarà suffi
     java -jar com.tuxdave.CodiceFiscale.jar
 In caso si abbia compilato in prima persona basterà:
 
-    java com.tuxdave.MainPackage.Main
+    java com.tuxdave.GUI.Main
 
 ***BUILD***
 In caso si voglia procedere alla compilazione è sufficiente compilare il com.tuxdave.CodiceFiscale con il comando:

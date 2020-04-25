@@ -21,7 +21,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.tuxdave.MainPackage.Main</mainClass>
+                            <mainClass>com.tuxdave.GUI.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
