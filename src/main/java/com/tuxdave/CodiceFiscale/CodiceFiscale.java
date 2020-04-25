@@ -14,7 +14,7 @@ public class CodiceFiscale{
     private String cc;
     
     //COSTRUTTORI
-    public CodiceFiscale(String cognome, String nome, String data, char sesso, String comune, String sigla)throws IOException, FileNotFoundException{
+    public CodiceFiscale(String cognome, String nome, String data, char sesso, String comune, String sigla)throws IOException, NullPointerException{
         this.setCognome(cognome);
         this.setNome(nome);
         this.setData(data);
@@ -62,18 +62,20 @@ public class CodiceFiscale{
     public String getComune(){
         return new String(this.comune[0] + " (" + this.comune[1] + ")");
     }
-    public void setComune(String a, String b) throws FileNotFoundException, IOException{ //a = nomeComune, b = sigla
+    public void setComune(String a, String b) throws NullPointerException, FileNotFoundException, IOException{ //a = nomeComune, b = sigla
         a = a.replace(' ', '_');
         a = a.toLowerCase();
         b = b.toUpperCase();
         if(!Pattern.matches("[A-Z][A-Z]", b)){
             throw new IllegalArgumentException("Sigla città non valida, usare formato [XX] es. TO");
         }
-
-        //FileReader file = new FileReader("db/catasto.csv");//todo:capire come raggiungere le risorse sia qui che nel jar
         URL file = getClass().getClassLoader().getResource("catasto.csv");
-        assert file != null;
-        BufferedReader lettore = new BufferedReader(new InputStreamReader(file.openStream()));
+        BufferedReader lettore = null;
+        if (file != null) {
+            lettore = new BufferedReader(new InputStreamReader(file.openStream()));
+        }else{
+            throw new NullPointerException("null");
+        }
         String[] riga = new String[3];
         riga[0] = lettore.readLine();
         boolean found = false;
@@ -199,6 +201,6 @@ public class CodiceFiscale{
         return Character.toString(p1.toCharArray()[s]);
     }
     public String codeCF(){
-        return new String(this.codeParziale() + this.codeCDC());
+        return this.codeParziale() + this.codeCDC();
     }
 }

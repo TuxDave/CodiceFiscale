@@ -17,7 +17,7 @@ public class Main{
         CodiceFiscale cf = null;
         try{
             cf = new CodiceFiscale();
-        }catch(FileNotFoundException e){
+        }catch(NullPointerException e){
             System.out.println("File catasto.csv non trovato! Posizionarlo nel percorso \"./db/catasto.csv\" rispetto al com.tuxdave.GUI");
             System.out.println("Arrivederci");
             System.exit(0);
