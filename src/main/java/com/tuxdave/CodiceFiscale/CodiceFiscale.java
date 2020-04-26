@@ -21,7 +21,7 @@ public class CodiceFiscale{
         this.setSesso(sesso);
         this.setComune(comune, sigla);
     }
-    public CodiceFiscale() throws IOException, FileNotFoundException{
+    public CodiceFiscale() throws IOException{
         this("","","01/01/1999",'f',"roma", "rm");
     }
 
@@ -62,7 +62,7 @@ public class CodiceFiscale{
     public String getComune(){
         return new String(this.comune[0] + " (" + this.comune[1] + ")");
     }
-    public void setComune(String a, String b) throws NullPointerException, FileNotFoundException, IOException{ //a = nomeComune, b = sigla
+    public void setComune(String a, String b) throws NullPointerException, IOException{ //a = nomeComune, b = sigla
         a = a.replace(' ', '_');
         a = a.toLowerCase();
         b = b.toUpperCase();

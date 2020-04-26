@@ -9,9 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 
 public class Gui extends JFrame {
@@ -56,7 +54,6 @@ public class Gui extends JFrame {
         Font nomeEditFont = this.$$$getFont$$$("Ubuntu", Font.BOLD, 14, nomeEdit.getFont());
         if (nomeEditFont != null) nomeEdit.setFont(nomeEditFont);
         nomeEdit.setPlaceHolder("Nome...");
-        nomeEdit.setText("Nome...");
         nomeEdit.setToolTipText("Nome...");
         panel1.add(nomeEdit, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         datePicker = new JDatePicker();
@@ -65,8 +62,6 @@ public class Gui extends JFrame {
         Font sessoBoxFont = this.$$$getFont$$$("Ubuntu", Font.BOLD, 14, sessoBox.getFont());
         if (sessoBoxFont != null) sessoBox.setFont(sessoBoxFont);
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-        defaultComboBoxModel1.addElement("M");
-        defaultComboBoxModel1.addElement("F");
         sessoBox.setModel(defaultComboBoxModel1);
         sessoBox.setToolTipText("Sesso...");
         panel1.add(sessoBox, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -81,6 +76,7 @@ public class Gui extends JFrame {
         calcolaButton.setText("Calcola!");
         panel1.add(calcolaButton, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         codiceFiscaleTextField = new JTextField();
+        codiceFiscaleTextField.setEditable(false);
         Font codiceFiscaleTextFieldFont = this.$$$getFont$$$("Ubuntu", Font.BOLD, 14, codiceFiscaleTextField.getFont());
         if (codiceFiscaleTextFieldFont != null) codiceFiscaleTextField.setFont(codiceFiscaleTextFieldFont);
         codiceFiscaleTextField.setText("Codice Fiscale: ");
@@ -132,10 +128,14 @@ public class Gui extends JFrame {
     }
 
     {//setup listener
-        //todo:add here
+        calcolaButton.addActionListener(new GuiListenr());
     }
 
     private void setupUi() throws IOException {
+        sessoBox.setModel(new DefaultComboBoxModel<Character>());
+        sessoBox.addItem('M');
+        sessoBox.addItem('F');
+
         cittaBox.setModel(new DefaultComboBoxModel<String>());
         URL file = getClass().getClassLoader().getResource("catasto.csv");
         BufferedReader lettore = null;
@@ -156,7 +156,49 @@ public class Gui extends JFrame {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             if (actionEvent.getSource() == calcolaButton) {
-                //todo: creare raccolda dati da vari elementi e cosare l'oggetto codice fiscale.
+                String cognome, nome, data;
+                String[] citta = new String[2];
+                char sesso;
+
+                cognome = cognomeEdit.getText();
+                nome = nomeEdit.getText();
+                String[] s = datePicker.getDate();
+                data = s[0] + "/" + s[1] + "/" + s[2];
+                sesso = (Character) sessoBox.getSelectedItem();//casting to Char
+                citta[0] = (String) cittaBox.getSelectedItem();//casting to String
+                if (citta[0] != null) {
+                    citta[0] = citta[0].replace("(", "");
+                    citta[0] = citta[0].replace(")", "");
+                    citta = citta[0].split(" ");
+                }
+
+                try {
+                    System.out.println(cognome);//todo: sistemato
+                    code = new CodiceFiscale();
+                    code.setCognome(cognome);
+                    code.setNome(nome);
+                    code.setData(data);
+                    code.setSesso(sesso);
+                    code.setComune(citta[0], citta[1]);
+                    codiceFiscaleTextField.setText(originalResult + code.codeCF());
+                } catch (NullPointerException e) {
+                    final JDialog dialog = new JDialog();
+                    dialog.getContentPane().setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
+                    dialog.add(new JLabel("Impossibile trovare database con codici catastali..."));
+                    dialog.add(new JLabel("Eseguire il programma da file JAR!"));
+                    JButton b = new JButton("OK!");
+                    b.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent actionEvent) {
+                            dialog.setVisible(false);
+                        }
+                    });
+                    dialog.add(b);
+                    dialog.setVisible(true);
+                    dialog.pack();
+                } catch (IOException e) {
+                    System.out.println("Ciao");
+                }
             }
         }
     }
