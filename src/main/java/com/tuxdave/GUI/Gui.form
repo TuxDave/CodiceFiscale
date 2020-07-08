@@ -8,17 +8,16 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="d218b" class="JComponents.JPlaceHolderTextField" binding="cognomeEdit">
+      <component id="58483" class="com.tuxdave.JComponents.JPlaceHolderTextField" binding="cognomeEdit">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Ubuntu" size="14" style="1"/>
           <placeHolder value="Cognome..."/>
-          <toolTipText value="Cognome..."/>
         </properties>
       </component>
-      <component id="bfd3c" class="JComponents.JPlaceHolderTextField" binding="nomeEdit">
+      <component id="bfd3c" class="com.tuxdave.JComponents.JPlaceHolderTextField" binding="nomeEdit">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

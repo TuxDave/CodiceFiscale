@@ -1,15 +1,17 @@
 package com.tuxdave.GUI;
 
-import JComponents.JPlaceHolderTextField;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.tuxdave.CodiceFiscale.CodiceFiscale;
+import com.tuxdave.JComponents.JPlaceHolderTextField;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 
 public class Gui extends JFrame {
@@ -48,7 +50,6 @@ public class Gui extends JFrame {
         Font cognomeEditFont = this.$$$getFont$$$("Ubuntu", Font.BOLD, 14, cognomeEdit.getFont());
         if (cognomeEditFont != null) cognomeEdit.setFont(cognomeEditFont);
         cognomeEdit.setPlaceHolder("Cognome...");
-        cognomeEdit.setToolTipText("Cognome...");
         panel1.add(cognomeEdit, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         nomeEdit = new JPlaceHolderTextField();
         Font nomeEditFont = this.$$$getFont$$$("Ubuntu", Font.BOLD, 14, nomeEdit.getFont());
